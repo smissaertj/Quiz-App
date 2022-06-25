@@ -1,0 +1,25 @@
+body, .modal {
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero .btn {
+    color: #7678ED;
+    border-color: #7678ED;
+}
+
+.hero .btn:hover{
+    color: white;
+    background-color: #7678ED;
+}
+
+.modal .btn {
+    background: #7678ED;
+    border: none;
+}
+
+.col img {
+    width: 50px;
+}

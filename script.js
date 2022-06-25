@@ -21,9 +21,10 @@ const retrieveLoggedInUser = () => {
       logoutUser();
     });
 
-    // Prevent new account creation
+    // Prevent new account creation, redirect the user to profile
     let btnGetStarted = document.getElementById('btnGetStarted');
-    btnGetStarted.classList.add('disabled');
+    btnGetStarted.textContent = `Let's Play, ${loggedInUser}!`;
+    btnGetStarted.setAttribute('onclick', "location.href='profile.html'");
   }
 }
 

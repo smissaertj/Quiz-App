@@ -17,6 +17,8 @@ const retrieveLoggedInUser = () => {
     // Enable logout
     let linkLogin = document.getElementById('linkLogin');
     linkLogin.textContent = 'Logout';
+    linkLogin.removeAttribute('data-bs-toggle');
+    linkLogin.removeAttribute('data-bs-target');
     linkLogin.addEventListener('click', function(){
       logoutUser();
     });
@@ -24,6 +26,8 @@ const retrieveLoggedInUser = () => {
     // Prevent new account creation, redirect the user to profile
     let btnGetStarted = document.getElementById('btnGetStarted');
     btnGetStarted.textContent = `Let's Play, ${loggedInUser}!`;
+    btnGetStarted.removeAttribute('data-bs-toggle');
+    btnGetStarted.removeAttribute('data-bs-target');
     btnGetStarted.setAttribute('onclick', "location.href='profile.html'");
   }
 }

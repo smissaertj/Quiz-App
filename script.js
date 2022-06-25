@@ -6,18 +6,41 @@ const retrieveUsers = () => {
   return users;
 }
 
+const retrieveLoggedInUser = () => {
+  let loggedInUser = localStorage.getItem('currentLoggedInUser');
+
+  if (loggedInUser) {
+    // Enable the Profile page
+    let linkProfile = document.getElementById('linkProfile');
+    linkProfile.classList.remove('disabled');
+
+    // Enable logout
+    let linkLogin = document.getElementById('linkLogin');
+    linkLogin.textContent = 'Logout';
+    linkLogin.addEventListener('click', function(){
+      logoutUser();
+    });
+
+    // Prevent new account creation
+    let btnGetStarted = document.getElementById('btnGetStarted');
+    btnGetStarted.classList.add('disabled');
+  }
+}
 
 const closeModal = (modalId) => {
   let modal = bootstrap.Modal.getInstance(document.getElementById(modalId));
   modal.hide();
+  location.reload();
 }
 
 const loginUser = (username) => {
   localStorage.setItem('currentLoggedInUser', username); // Set the user as logged in.
+  retrieveLoggedInUser();
 }
 
-const logoutUser = (username) => {
-  localStorage.removeItem('currentLoggedIn');
+const logoutUser = () => {
+  localStorage.removeItem('currentLoggedInUser');
+  location.reload();
 }
 
 
@@ -65,7 +88,6 @@ btnSignUp.addEventListener('click', function(ev){
     btnClose.addEventListener('click', function(ev){
       ev.preventDefault();
       closeModal('getStarted');
-      location.reload();
   })
   } else {
     modalHeader.firstElementChild.textContent = "Account Created!";
@@ -105,14 +127,17 @@ btnLogin.addEventListener('click', function(ev){
     modalHeader.firstElementChild.textContent = 'Thank you for logging in!'
     loginUser(userName);
   } else {
-    console.log('Wrong username or password.');
     modalHeader.firstElementChild.textContent = 'Wrong username or password!';
-
-    btnClose.addEventListener('click', function(){
+    btnClose.addEventListener('click', function(ev){
+      ev.preventDefault();
       closeModal('login');
-      location.reload();
     })
   }
 
 })
 
+/*
+ On Page Load Functions
+*/
+
+retrieveLoggedInUser();

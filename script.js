@@ -1,10 +1,32 @@
 /*
+Helper functions
+*/
+const retrieveUsers = () => {
+  let users = JSON.parse(localStorage.getItem('userProfiles') || '[]');
+  return users;
+}
+
+
+const closeModal = (modalId) => {
+  let modal = bootstrap.Modal.getInstance(document.getElementById(modalId));
+  modal.hide();
+}
+
+const loginUser = (username) => {
+  localStorage.setItem('currentLoggedInUser', username); // Set the user as logged in.
+}
+
+const logoutUser = (username) => {
+  localStorage.removeItem('currentLoggedIn');
+}
+
+
+/*
 User Sign up
 */
 const createUserProfile = (username, passwordHash) => {
-  // retrieve the existing users or create an empty array
-  let users = JSON.parse(localStorage.getItem('userProfiles') || '[]');
-  console.log(users);
+  // retrieve the existing users
+  let users = retrieveUsers();
 
   let usernameExists = users.some(user => user.username === username);
 
@@ -19,12 +41,6 @@ const createUserProfile = (username, passwordHash) => {
     localStorage.setItem('userProfiles', JSON.stringify(users));
     return true;
   }
-}
-
-
-const closeModal = (modalId) => {
-  let modal = bootstrap.Modal.getInstance(document.getElementById(modalId));
-  modal.hide();
 }
 
 
@@ -47,17 +63,17 @@ btnSignUp.addEventListener('click', function(ev){
     p.innerHTML = '<small>Please choose a different username.</small>';
     modalBody.appendChild(p);
     btnClose.addEventListener('click', function(ev){
-    ev.preventDefault();
-    closeModal('getStarted');
-    location.reload();
+      ev.preventDefault();
+      closeModal('getStarted');
+      location.reload();
   })
   } else {
     modalHeader.firstElementChild.textContent = "Account Created!";
     p.innerHTML = '<small>You may close this window and login.</small>';
     modalBody.appendChild(p);
     btnClose.addEventListener('click', function(ev){
-    ev.preventDefault();
-    closeModal('getStarted');
+      ev.preventDefault();
+      closeModal('getStarted');
     })
   }
 
@@ -67,4 +83,36 @@ btnSignUp.addEventListener('click', function(ev){
 /*
 User Login / Authentication
 */
+let btnLogin = document.getElementById('btnLogin');
+btnLogin.addEventListener('click', function(ev){
+  ev.preventDefault();
+
+  let users = retrieveUsers();
+  let userName = document.getElementById('loginUsername').value;
+  let password = document.getElementById('loginPassword').value;
+
+  let userIndex = users.findIndex(user => user.username === userName);
+  let passwordMatch = (userIndex > -1) ? (password === atob(users[userIndex].password)) : false;
+
+  let modalHeader = document.querySelectorAll('.modal-header')[1];
+  let loginForm = document.getElementById('loginForm');
+  loginForm.parentElement.removeChild(loginForm);
+  let modalBody = document.querySelectorAll('.modal-body')[1];
+  let p = document.createElement('p');
+  let btnClose = document.getElementById('loginBtnClose');
+
+  if (passwordMatch){
+    modalHeader.firstElementChild.textContent = 'Thank you for logging in!'
+    loginUser(userName);
+  } else {
+    console.log('Wrong username or password.');
+    modalHeader.firstElementChild.textContent = 'Wrong username or password!';
+
+    btnClose.addEventListener('click', function(){
+      closeModal('login');
+      location.reload();
+    })
+  }
+
+})
 

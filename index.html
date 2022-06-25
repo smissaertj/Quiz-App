@@ -48,6 +48,7 @@
         </div>
         <div class="col-lg-4 p-0 shadow-lg">
             <img class="rounded-lg-3" src="img/hero.png" alt="" width="480">
+            <!--  TODO img should be responsive: media queries?   -->
         </div>
       </div>
     </div>
@@ -129,11 +130,11 @@
         <div class="modal-content rounded-5 shadow">
           <div class="modal-header p-5 pb-4 border-bottom-0">
             <h2 class="fw-bold mb-0">Login</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="loginBtnClose"></button>
           </div>
     
           <div class="modal-body p-5 pt-0">
-            <form class="">
+            <form id="loginForm">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control rounded-4" id="loginUsername">
                 <label for="loginUsername">Username</label>
@@ -142,7 +143,7 @@
                 <input type="password" class="form-control rounded-4" id="loginPassword">
                 <label for="loginPassword">Password</label>
               </div>
-              <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Login</button>
+              <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" id="btnLogin">Login</button>
             </form>
           </div>
         </div>

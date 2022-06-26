@@ -154,7 +154,7 @@ const updateCards = () => {
   console.log(quizCardButtons);
 
   for (let quiz in quizCardButtons){
-    quizCardButtons[quiz].innerHTML = `<button type="button" class="btn btn-secondary btn-sm px-4 playQuizBtn" onclick="app.play(${quiz})">Play!</button>`
+    quizCardButtons[quiz].innerHTML = `<button type="button" class="btn btn-outline-secondary btn-sm px-4 playQuizBtn" onclick="app.play(${quiz})">Play!</button>`
   }
 
 }

@@ -13,12 +13,12 @@ body, .modal {
     max-height: 250px;
 }
 
-.hero .btn {
+.hero .btn, .playQuizBtn{
     color: #7678ED;
     border-color: #7678ED;
 }
 
-.hero .btn:hover{
+.hero .btn:hover, .playQuizBtn:hover{
     color: white;
     background-color: #7678ED;
 }
@@ -30,17 +30,5 @@ body, .modal {
 
 .col img {
     width: 50px;
-}
-
-.playQuizBtn {
-    color: white;
-    background-color: #9B2226;
-    border: none;
-}
-
-.playQuizBtn:hover {
-    color: white;
-    background-color: #AE2012;
-    border: none;
 }
 

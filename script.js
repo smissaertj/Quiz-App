@@ -2,8 +2,7 @@
 Helper functions
 */
 const retrieveUsers = () => {
-  let users = JSON.parse(localStorage.getItem('userProfiles') || '[]');
-  return users;
+  return JSON.parse(localStorage.getItem('userProfiles') || '[]');
 }
 
 const currentLoggedInUser = () => {
@@ -130,8 +129,8 @@ btnLogin.addEventListener('click', function(ev){
   let modalHeader = document.querySelectorAll('.modal-header')[1];
   let loginForm = document.getElementById('loginForm');
   loginForm.parentElement.removeChild(loginForm);
-  let modalBody = document.querySelectorAll('.modal-body')[1];
-  let p = document.createElement('p');
+  // let modalBody = document.querySelectorAll('.modal-body')[1];
+  // let p = document.createElement('p');
   let btnClose = document.getElementById('loginBtnClose');
 
   if (passwordMatch){
@@ -147,23 +146,21 @@ btnLogin.addEventListener('click', function(ev){
 
 })
 
+
 /*
 User Profile
 */
 const updateCards = () => {
-  let quizCardButtons = document.querySelectorAll('.startQuizButton');
-  console.log(quizCardButtons);
+  let quizButtons = document.querySelectorAll('.startQuizButton');
 
-  for (let quiz in quizCardButtons){
-    quizCardButtons[quiz].innerHTML = `<button type="button" class="btn btn-outline-secondary btn-sm px-4 playQuizBtn" onclick="app.play(${quiz})">Play!</button>`
+  for (let quizIndex in quizButtons){
+    quizButtons[quizIndex].innerHTML = `<button type="button" class="btn btn-outline-secondary btn-sm px-4 playQuizBtn" onclick="app.play(${quizIndex})">Play!</button>`
   }
-
 }
 
 
 function showUserProfile(){
   let user = currentLoggedInUser();
-  console.log(user);
   let heroContainer = document.getElementById('heroContainer');
   heroContainer.setAttribute('style', 'display: none');
 
@@ -178,7 +175,7 @@ function showUserProfile(){
 
 
 /*
-Quiz
+Quiz Logic
 */
 
 let app = {
@@ -193,5 +190,4 @@ let app = {
 /*
  On Page (re)Load Functions
 */
-
 changePageState();

@@ -34,11 +34,13 @@ body, .modal {
 
 .playQuizBtn {
     color: white;
-    background-color: #219EBC;
+    background-color: #9B2226;
+    border: none;
 }
 
 .playQuizBtn:hover {
     color: white;
-    background-color: #023047;
+    background-color: #AE2012;
+    border: none;
 }
 

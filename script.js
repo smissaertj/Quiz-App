@@ -6,8 +6,12 @@ const retrieveUsers = () => {
   return users;
 }
 
-const retrieveLoggedInUser = () => {
-  let loggedInUser = localStorage.getItem('currentLoggedInUser');
+const currentLoggedInUser = () => {
+  return localStorage.getItem('currentLoggedInUser');
+}
+
+const changePageState = () => {
+  let loggedInUser = currentLoggedInUser();
 
   if (loggedInUser) {
     // Enable the Profile page
@@ -25,10 +29,10 @@ const retrieveLoggedInUser = () => {
 
     // Prevent new account creation, redirect the user to profile
     let btnGetStarted = document.getElementById('btnGetStarted');
-    btnGetStarted.textContent = `Let's Play, ${loggedInUser}!`;
+    btnGetStarted.textContent = `Play!`;
     btnGetStarted.removeAttribute('data-bs-toggle');
     btnGetStarted.removeAttribute('data-bs-target');
-    btnGetStarted.setAttribute('onclick', "location.href='profile.html'");
+    btnGetStarted.setAttribute('onclick', "showUserProfile()");
   }
 }
 
@@ -40,7 +44,8 @@ const closeModal = (modalId) => {
 
 const loginUser = (username) => {
   localStorage.setItem('currentLoggedInUser', username); // Set the user as logged in.
-  retrieveLoggedInUser();
+  changePageState();
+
 }
 
 const logoutUser = () => {
@@ -142,7 +147,49 @@ btnLogin.addEventListener('click', function(ev){
 })
 
 /*
- On Page Load Functions
+User Profile
+*/
+const updateCards = () => {
+  let quizCardButtons = document.querySelectorAll('.startQuizButton');
+  console.log(quizCardButtons);
+
+  for (let quiz in quizCardButtons){
+    quizCardButtons[quiz].innerHTML = `<button type="button" class="btn btn-secondary btn-sm px-4 playQuizBtn" onclick="app.play(${quiz})">Play!</button>`
+  }
+
+}
+
+
+function showUserProfile(){
+  let user = currentLoggedInUser();
+  let heroContainer = document.getElementById('heroContainer');
+  heroContainer.setAttribute('style', 'display: none');
+
+  let profileContainer = document.getElementById('profileContainer');
+  profileContainer.setAttribute('style', 'display: block');
+
+  let profileTitle = document.getElementById('profileTitle');
+  profileTitle.textContent = `Welcome ${user}!`;
+
+  updateCards();
+}
+
+
+/*
+Quiz
 */
 
-retrieveLoggedInUser();
+let app = {
+  play: function(id){
+    console.log(`playing ${id}`);
+  }
+}
+
+
+
+
+/*
+ On Page (re)Load Functions
+*/
+
+changePageState();

@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarToggle">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link disabled" href="profile.html" id="linkProfile">Profile</a>
+              <a class="nav-link disabled" href="#" id="linkProfile" onclick="showUserProfile()">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Leaderboard</a>
@@ -35,7 +35,8 @@
       </div>
     </nav>
     
-    <div class="container my-4">
+<!--  Home Hero  -->
+    <div class="container my-4" id="heroContainer">
       <div class="row hero p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3 border shadow-lg">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
           <h1 class="display-4 fw-bold lh-1 text-white">HTML.</h1>
@@ -48,12 +49,31 @@
         </div>
         <div class="col-lg-4 p-0 shadow-lg">
             <img class="rounded-lg-3 img-fluid" src="img/hero.png" alt="Illustration of person sitting relaxed at a desk">
-            <!--  TODO img should be responsive: media queries?   -->
+        </div>
+      </div>
+    </div>
+    
+<!-- Profile Hero -->
+    <div class="container my-4" id="profileContainer">
+      <div class="row hero p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3 border shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+          <h1 class="display-4 fw-bold lh-1 text-white" id="profileTitle"></h1>
+          <p class="lead fw-bolder">Play a Quiz to increase your Total Points and Current Rank.</p>
+          <p class="lead">Your Rank increases with every 30 points you earn. You have 5 seconds to answer a question, and you will incur a penalty of
+          -1 point if you do not answer within the time limit. A correct answer gives you 1 point, a wrong answer does not give any points or penalties.</p>
+          <ul class="list-group list-group-flush bg-transparent">
+            <li class="list-group-item bg-transparent fw-bold" data-toggle="tooltip" data-placement="right" title="The total amount of points you earned by playing any of the quizzes.">Total Points: 0</li>
+            <li class="list-group-item bg-transparent fw-bold" data-toggle="tooltip" data-placement="right" title="You need 30 points to earn 1 Star.">Current Rank: <i class="fa-solid fa-star"></i></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 p-0 mx-auto shadow-lg">
+            <img class="rounded-lg-3 img-fluid profilePicture" src="img/profile.png" alt="Illustration of person sitting relaxed at a desk">
         </div>
       </div>
     </div>
 
-    <div class="container">
+<!-- Home Cards -->
+    <div class="container" id="homeCardsContainer">
     <div class="row row-cols-1 row-cols-lg-4 justify-content-center py-4">
       <div class="col my-3">
         <div class="card card-html card-cover h-100 overflow-hidden text-white bg-transparent rounded-5 shadow-lg border">
@@ -61,7 +81,7 @@
             <h2 class="pb-3 display-6 lh-1 fw-bold">HTML.</h2>
             <img class="mx-auto img-fluid" src="img/html-5.png">
             <ul class="pt-3 list-unstyled mt-auto">
-              <li class="d-flex justify-content-center text-dark">
+              <li class="d-flex justify-content-center text-dark startQuizButton">
                 <small>30 Questions</small>
               </li>
             </ul>
@@ -75,7 +95,7 @@
             <h2 class="pb-3 display-6 lh-1 fw-bold">CSS.</h2>
             <img class="mx-auto img-fluid" src="img/css-3.png">
             <ul class="pt-3 list-unstyled mt-auto">
-              <li class="d-flex justify-content-center text-dark">
+              <li class="d-flex justify-content-center text-dark startQuizButton">
                 <small>30 Questions</small>
               </li>
             </ul>
@@ -89,7 +109,7 @@
             <h2 class="pb-3 display-6 lh-1 fw-bold">JS.</h2>
             <img class="mx-auto img-fluid" src="img/js.png">
             <ul class="pt-3 list-unstyled mt-auto">
-              <li class="d-flex justify-content-center text-dark">
+              <li class="d-flex justify-content-center text-dark startQuizButton">
                 <small>30 Questions</small>
               </li>
             </ul>

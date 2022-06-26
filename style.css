@@ -5,6 +5,14 @@ body, .modal {
     background-attachment: fixed;
 }
 
+#profileContainer {
+    display: none;
+}
+
+.profilePicture {
+    max-height: 250px;
+}
+
 .hero .btn {
     color: #7678ED;
     border-color: #7678ED;
@@ -23,3 +31,14 @@ body, .modal {
 .col img {
     width: 50px;
 }
+
+.playQuizBtn {
+    color: white;
+    background-color: #219EBC;
+}
+
+.playQuizBtn:hover {
+    color: white;
+    background-color: #023047;
+}
+

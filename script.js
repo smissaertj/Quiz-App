@@ -7,7 +7,7 @@ const retrieveUsers = () => {
 }
 
 const currentLoggedInUser = () => {
-  return localStorage.getItem('currentLoggedInUser');
+  return JSON.parse(localStorage.getItem('currentLoggedInUser'));
 }
 
 const changePageState = () => {
@@ -42,8 +42,9 @@ const closeModal = (modalId) => {
   location.reload();
 }
 
-const loginUser = (username) => {
-  localStorage.setItem('currentLoggedInUser', username); // Set the user as logged in.
+const loginUser = (userName, userIndex) => {
+  let user = { userName: userName, userIndex: userIndex};
+  localStorage.setItem('currentLoggedInUser', JSON.stringify(user)); // Set the user as logged in.
   changePageState();
 
 }
@@ -135,7 +136,7 @@ btnLogin.addEventListener('click', function(ev){
 
   if (passwordMatch){
     modalHeader.firstElementChild.textContent = 'Thank you for logging in!'
-    loginUser(userName);
+    loginUser(userName, userIndex);
   } else {
     modalHeader.firstElementChild.textContent = 'Wrong username or password!';
     btnClose.addEventListener('click', function(ev){
@@ -162,6 +163,7 @@ const updateCards = () => {
 
 function showUserProfile(){
   let user = currentLoggedInUser();
+  console.log(user);
   let heroContainer = document.getElementById('heroContainer');
   heroContainer.setAttribute('style', 'display: none');
 
@@ -169,7 +171,7 @@ function showUserProfile(){
   profileContainer.setAttribute('style', 'display: block');
 
   let profileTitle = document.getElementById('profileTitle');
-  profileTitle.textContent = `Welcome ${user}!`;
+  profileTitle.textContent = `Welcome ${user.userName}!`;
 
   updateCards();
 }

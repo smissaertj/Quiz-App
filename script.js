@@ -98,7 +98,7 @@ btnSignUp.addEventListener('click', function(ev){
     btnClose.addEventListener('click', function(ev){
       ev.preventDefault();
       closeModal('getStarted');
-  })
+    })
   } else {
     modalHeader.firstElementChild.textContent = "Account Created!";
     p.innerHTML = '<small>You may close this window and login.</small>';
@@ -108,7 +108,6 @@ btnSignUp.addEventListener('click', function(ev){
       closeModal('getStarted');
     })
   }
-
 })
 
 
@@ -143,7 +142,6 @@ btnLogin.addEventListener('click', function(ev){
       closeModal('login');
     })
   }
-
 })
 
 
@@ -194,7 +192,7 @@ let quiz = {
       }
     }).filter(el => el !== undefined);
 
-    // Shuffle this.questionList and show a question
+    // Shuffle this.questionList
     for (let i = this.questionList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [this.questionList[i], this.questionList[j]] = [this.questionList[j], this.questionList[i]];
@@ -212,8 +210,7 @@ let quiz = {
     profileCardsRow.classList.add('glass');
     profileCardsRow.appendChild(quizCard);
     quizCard.setAttribute('style', 'display: block');
-    profileCardsColumns.forEach(el => el.setAttribute('style', 'display: none'));
-
+    profileCardsColumns.forEach(el => el.style.display = "none");
     this.showQuestion();
   },
 
@@ -223,27 +220,27 @@ let quiz = {
     questionTitle.textContent = currentQuestion.question;
 
     let answers = currentQuestion.answers;
-    let answerList = document.getElementById('quizAnswers');
-    answerList.innerHTML = ''; // Clear answers of the previous question
+    let answerDiv = document.getElementById('quizAnswers');
+    answerDiv.innerHTML = ''; // Clear answers of the previous question
     for (let answer of answers) {
-      let li = document.createElement('li')
-      li.textContent = answer;
-      li.classList.add('btn', 'playQuizBtn', 'btn-answer');
-      answerList.appendChild(li);
+      let btn = document.createElement('button');
+      btn.classList.add('btn', 'playQuizBtn', 'btn-answer');
+      btn.textContent = answer;
+      answerDiv.appendChild(btn);
     }
 
     let btnAnswers = document.querySelectorAll('.btn-answer');
     btnAnswers.forEach((element, index) => {
       element.addEventListener('click', () => {
         this.checkAnswer(index);
-        // element.removeEventListener('click', () =>{} );
       })
     })
   },
 
   checkAnswer: function(answerIndex){
     let currentQuestion = questions[this.questionList[this.currentQuestion]]
-    let btn = document.querySelectorAll('.btn-answer')[answerIndex];
+    let btns = document.querySelectorAll('.btn-answer');
+    let btn = btns[answerIndex];
     if (answerIndex === currentQuestion.correctAnswerID){
       btn.classList.add('btn-success');
       btn.classList.remove('playQuizBtn');
@@ -252,6 +249,8 @@ let quiz = {
       btn.classList.add('btn-danger');
       btn.classList.remove('playQuizBtn');
     }
+    // Prevent user from clicking other buttons
+    btns.forEach(button => button.disabled = true);
   },
 
   nextQuestion: function(){

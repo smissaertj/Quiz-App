@@ -190,13 +190,9 @@ let quiz = {
     // Construct an array of question indexes from the chosen category
     this.questionList = questions.map((el, index) => {
       if (el.category === quizCategory){
-        console.log(quizCategory)
-        console.log(index)
         return index;
       }
     }).filter(el => el !== undefined);
-
-    console.log(this.questionList);
 
     // Shuffle this.questionList and show a question
     for (let i = this.questionList.length - 1; i > 0; i--) {
@@ -222,9 +218,7 @@ let quiz = {
   },
 
   showQuestion: function(){
-    console.log(this.currentQuestion);
     let currentQuestion = questions[this.questionList[this.currentQuestion]];
-    console.log(currentQuestion)
     let questionTitle = document.getElementById('questionTitle');
     questionTitle.textContent = currentQuestion.question;
 
@@ -249,17 +243,20 @@ let quiz = {
 
   checkAnswer: function(answerIndex){
     let currentQuestion = questions[this.questionList[this.currentQuestion]]
+    let btn = document.querySelectorAll('.btn-answer')[answerIndex];
     if (answerIndex === currentQuestion.correctAnswerID){
-      console.log('CORRECT!')
+      btn.classList.add('btn-success');
+      btn.classList.remove('playQuizBtn');
+      // updatePoints()
     } else {
-      console.log('WRONG!')
+      btn.classList.add('btn-danger');
+      btn.classList.remove('playQuizBtn');
     }
   },
 
   nextQuestion: function(){
     if (this.currentQuestion < this.questionList.length - 1) {
       this.currentQuestion++;
-      console.log(`NEXT: ${this.currentQuestion}`);
       this.showQuestion();
     } else {
       console.log('END OF GAME')

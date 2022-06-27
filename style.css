@@ -14,13 +14,14 @@ body, .modal {
 }
 
 .hero .btn, .playQuizBtn{
-    color: #7678ED;
+    color: white;
+    background-color: #7678ED;
     border-color: #7678ED;
 }
 
 .hero .btn:hover, .playQuizBtn:hover{
     color: white;
-    background-color: #7678ED;
+    background-color: #9b5de5;
 }
 
 .modal .btn {

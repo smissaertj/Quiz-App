@@ -189,18 +189,24 @@ let quiz = {
     // Construct an array of question indexes from the chosen category
     this.questionList = questions.map((el, index) => {
       if (el.category === quizCategory){
+        console.log(quizCategory)
+        console.log(index)
         return index;
       }
     }).filter(el => el !== undefined);
 
+    console.log(this.questionList);
+
+    // Shuffle this.questionList and show a question
+    for (let i = this.questionList.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.questionList[i], this.questionList[j]] = [this.questionList[j], this.questionList[i]];
+    }
+    // Sets the index of the question to be shown - we increment this after each question
+    this.currentQuestion = 0
+
     // Track how many questions were shown to the user
     this.questionCount = 0;
-
-    // Track which question we showed
-    this.questionHistory = []// keep track of what questions we showed
-
-    // Generate a random question
-    this.selectRandomQuestion();
 
     // Hide profile cards, show quiz card
     let profileCardsRow = document.getElementById('homeCardsContainer').firstElementChild;
@@ -210,34 +216,63 @@ let quiz = {
     profileCardsRow.appendChild(quizCard);
     quizCard.setAttribute('style', 'display: block');
     profileCardsColumns.forEach(el => el.setAttribute('style', 'display: none'));
+
+    this.showQuestion();
   },
 
-  selectRandomQuestion: function() {
-    let min = this.questionList[0];
-    let max = this.questionList[this.questionList.length - 1] + 1;
-    this.questionIndex = Math.floor(Math.random() * (max - min) + min);
+  showQuestion: function(){
+    console.log(this.currentQuestion);
+    let currentQuestion = questions[this.questionList[this.currentQuestion]];
+    console.log(currentQuestion)
+    let questionTitle = document.getElementById('questionTitle');
+    questionTitle.textContent = currentQuestion.question;
 
-    // Remove the questionIndex from this.questionList so that we don't show that question again
-    this.questionList.splice(this.questionIndex, 1);
+    let answers = currentQuestion.answers;
+    let answerList = document.getElementById('quizAnswers');
+    answerList.innerHTML = ''; // Clear answers of the previous question
+    for (let answer of answers) {
+      let li = document.createElement('li')
+      li.textContent = answer;
+      li.classList.add('btn', 'playQuizBtn', 'btn-answer');
+      answerList.appendChild(li);
+    }
 
-    // Show the question
-    this.showQuestion(this.questionIndex);
+    let btnAnswers = document.querySelectorAll('.btn-answer');
+    btnAnswers.forEach((element, index) => {
+      element.addEventListener('click', () => {
+        this.checkAnswer(index);
+        // element.removeEventListener('click', () =>{} );
+      })
+    })
   },
 
-  showQuestion: function(index){
-    console.log(questions[index].question);
-    this.checkAnswer();
+  checkAnswer: function(answerIndex){
+    let currentQuestion = questions[this.questionList[this.currentQuestion]]
+    if (answerIndex === currentQuestion.correctAnswerID){
+      console.log('CORRECT!')
+    } else {
+      console.log('WRONG!')
+    }
   },
 
-  checkAnswer: function(){
-
-    this.updatePoints();
-    // this.selectRandomQuestion();
+  nextQuestion: function(){
+    if (this.currentQuestion < this.questionList.length - 1) {
+      this.currentQuestion++;
+      console.log(`NEXT: ${this.currentQuestion}`);
+      this.showQuestion();
+    } else {
+      console.log('END OF GAME')
+      // Show result screen
+    }
   },
 
   updatePoints: function(){
 
   },
+
+  saveState: function(){
+
+  }
 }
 
 

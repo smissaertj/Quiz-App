@@ -12,7 +12,8 @@
 <body>
 
   <div class="container-fluid vw-100 vh-100">
-    
+
+    <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
       <div class="container-fluid">
         <a class="navbar-brand text-muted" href="/"><i class="fa-solid fa-house fa-1x"></i></a>
@@ -34,17 +35,18 @@
         </div>
       </div>
     </nav>
+    </div>
     
 <!--  Home Hero  -->
-    <div class="container my-4" id="heroContainer">
-      <div class="row hero p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3 border shadow-lg">
+    <div class="container my-4 glass" id="heroContainer">
+      <div class="row hero p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3 shadow-lg">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
           <h1 class="display-4 fw-bold lh-1 text-white">HTML.</h1>
           <h1 class="display-4 fw-bold lh-1 text-white">CSS.</h1>
           <h1 class="display-4 fw-bold lh-1 text-white">JavaScript.</h1>
           <p class="lead fw-bolder">Test your knowledge. Collect Stars. Earn your rank.</p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#getStarted" id="btnGetStarted">Sign Up!</button>
+            <button type="button" class="btn btn-lg px-4" data-bs-toggle="modal" data-bs-target="#getStarted" id="btnGetStarted">Sign Up!</button>
           </div>
         </div>
         <div class="col-lg-4 p-0 shadow-lg">
@@ -54,8 +56,8 @@
     </div>
     
 <!-- Profile Hero -->
-    <div class="container my-4" id="profileContainer">
-      <div class="row hero p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3 border shadow-lg">
+    <div class="container my-4 glass" id="profileContainer">
+      <div class="row hero p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3 shadow-lg">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
           <h1 class="display-4 fw-bold lh-1 text-white" id="profileTitle"></h1>
           <p class="lead fw-bolder">Play a Quiz to increase your Total Points and Current Rank.</p>
@@ -76,7 +78,7 @@
     <div class="container" id="homeCardsContainer">
     <div class="row row-cols-1 row-cols-lg-4 justify-content-center py-4">
       <div class="col my-3 profileCard">
-        <div class="card card-html card-cover h-100 overflow-hidden text-white bg-transparent rounded-5 shadow-lg border">
+        <div class="card card-html card-cover h-100 overflow-hidden text-white rounded-5 shadow-lg glass">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 class="pb-3 display-6 lh-1 fw-bold">HTML.</h2>
             <img class="mx-auto img-fluid" alt="HTML5 Logo" src="img/html-5.png">
@@ -90,7 +92,7 @@
       </div>
 
       <div class="col my-3 profileCard">
-        <div class="card card-css card-cover h-100 overflow-hidden text-white bg-transparent rounded-5 shadow-lg border">
+        <div class="card card-css card-cover h-100 overflow-hidden text-white rounded-5 shadow-lg glass">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 class="pb-3 display-6 lh-1 fw-bold">CSS.</h2>
             <img class="mx-auto img-fluid" alt="CSS3 Logo" src="img/css-3.png">
@@ -104,7 +106,7 @@
       </div>
 
       <div class="col my-3 profileCard">
-        <div class="card card-js card-cover h-100 overflow-hidden text-white bg-transparent rounded-5 shadow-lg border">
+        <div class="card card-js card-cover h-100 overflow-hidden text-white rounded-5 shadow-lg glass">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
             <h2 class="pb-3 display-6 lh-1 fw-bold">JS.</h2>
             <img class="mx-auto img-fluid" alt="JavaScript Logo" src="img/js.png">
@@ -118,15 +120,11 @@
       </div>
     </div>
 <!-- Quiz Card -->
-      <div class="col col-lg-6 my-3" id="quizCard">
+      <div class="col col-lg-8 my-3" id="quizCard">
         <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-          <h2 class="pb-3 display-8 lh-1 fw-bold">JS.</h2>
-          <img class="mx-auto img-fluid" alt="JavaScript Logo" src="img/js.png">
-          <ul class="pt-3 list-unstyled mt-auto">
-            <li class="d-flex justify-content-center text-dark startQuizButton">
-              <small>30 Questions</small>
-            </li>
-          </ul>
+          <p class="pb-1 display-8 fw-bold" id="questionTitle"></p>
+          <ul class="list-unstyled d-grid gap-2" id="quizAnswers"></ul>
+          <button class="btn btn-outline-secondary m-auto" id="btnNext" onclick="quiz.nextQuestion()">Next</button>
         </div>
       </div>
 

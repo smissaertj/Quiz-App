@@ -161,6 +161,7 @@ const updateCards = () => {
 
 function showUserProfile(){
   let user = currentLoggedInUser();
+  let userName = user.userName[0].toUpperCase() + user.userName.slice(1);
   let heroContainer = document.getElementById('heroContainer');
   heroContainer.setAttribute('style', 'display: none');
 
@@ -168,7 +169,7 @@ function showUserProfile(){
   profileContainer.setAttribute('style', 'display: block');
 
   let profileTitle = document.getElementById('profileTitle');
-  profileTitle.textContent = `Welcome ${user.userName}!`;
+  profileTitle.textContent = `Welcome ${userName}!`;
 
   updateCards();
 }

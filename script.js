@@ -154,7 +154,7 @@ const updateCards = () => {
   let quizButtons = document.querySelectorAll('.startQuizButton');
 
   for (let quizIndex in quizButtons){
-    quizButtons[quizIndex].innerHTML = `<button type="button" class="btn btn-outline-secondary btn-sm px-4 playQuizBtn" onclick="app.play(${quizIndex})">Play!</button>`
+    quizButtons[quizIndex].innerHTML = `<button type="button" class="btn btn-outline-secondary btn-sm px-4 playQuizBtn" onclick="quiz.play(${quizIndex})">Play!</button>`
   }
 }
 
@@ -178,13 +178,67 @@ function showUserProfile(){
 Quiz Logic
 */
 
-let app = {
-  play: function(id){
-    console.log(`playing ${id}`);
-  }
+let quiz = {
+  play: function(quizCategory){
+    /*
+      Set quiz environment variables
+    */
+    this.user = currentLoggedInUser();
+    this.score = 0;
+
+    // Construct an array of question indexes from the chosen category
+    this.questionList = questions.map((el, index) => {
+      if (el.category === quizCategory){
+        return index;
+      }
+    }).filter(el => el !== undefined);
+
+    // Track how many questions were shown to the user
+    this.questionCount = 0;
+
+    // Track which question we showed
+    this.questionHistory = []// keep track of what questions we showed
+
+    // Generate a random question
+    this.selectRandomQuestion();
+
+    // Hide profile cards, show quiz card
+    let profileCardsRow = document.getElementById('homeCardsContainer').firstElementChild;
+    let profileCardsColumns = document.querySelectorAll('div.profileCard');
+    let quizCard = document.getElementById('quizCard');
+    profileCardsRow.classList.add('glass');
+    profileCardsRow.appendChild(quizCard);
+    quizCard.setAttribute('style', 'display: block');
+    profileCardsColumns.forEach(el => el.setAttribute('style', 'display: none'));
+  },
+
+  selectRandomQuestion: function() {
+    let min = this.questionList[0];
+    let max = this.questionList[this.questionList.length - 1] + 1;
+    this.questionIndex = Math.floor(Math.random() * (max - min) + min);
+
+    // Remove the questionIndex from this.questionList so that we don't show that question again
+    this.questionList.splice(this.questionIndex, 1);
+
+    // Show the question
+    this.showQuestion(this.questionIndex);
+  },
+
+  showQuestion: function(index){
+    console.log(questions[index].question);
+    this.checkAnswer();
+  },
+
+  checkAnswer: function(){
+
+    this.updatePoints();
+    // this.selectRandomQuestion();
+  },
+
+  updatePoints: function(){
+
+  },
 }
-
-
 
 
 /*

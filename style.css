@@ -33,6 +33,10 @@ body, .modal {
     width: 50px;
 }
 
+.progress-bar{
+    transition: none;
+}
+
 .glass {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;

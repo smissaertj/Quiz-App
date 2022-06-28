@@ -209,6 +209,7 @@ let quiz = {
     */
     this.user = currentLoggedInUser();
     this.score = 0;
+    this.timeLimit = 5000;
 
     // Construct an array of question indexes from the chosen category
     this.questionList = questions.map((el, index) => {
@@ -240,6 +241,22 @@ let quiz = {
   },
 
   showQuestion: function(){
+    let timer = document.getElementById('progressbarTimer');
+    timer.setAttribute('aria-valuenow', '100')
+    let timerPosition = 100;
+    this.interval = setInterval(() => {
+      timerPosition -= 0.05;
+      timer.style.width = timerPosition + '%';
+      timer.setAttribute('aria-valuenow', timerPosition)
+
+      if (timerPosition <= 0){
+        clearInterval(this.interval);
+        this.score--; // penalty for not answering within the time limit
+        this.nextQuestion();
+      }
+
+    }, 1)
+
     let currentQuestion = questions[this.questionList[this.currentQuestion]];
     let questionTitle = document.getElementById('questionTitle');
     questionTitle.textContent = currentQuestion.question;
@@ -257,6 +274,7 @@ let quiz = {
     let btnAnswers = document.querySelectorAll('.btn-answer');
     btnAnswers.forEach((element, index) => {
       element.addEventListener('click', () => {
+        clearInterval(this.interval);
         this.checkAnswer(index);
       })
     })
@@ -283,10 +301,8 @@ let quiz = {
       this.currentQuestion++;
       this.showQuestion();
     } else {
-      console.log('END OF GAME')
-      console.log(this.score);
       this.saveState(); // Update user profile with new score
-      // Show result screen
+      // TODO Show result screen
     }
   },
 

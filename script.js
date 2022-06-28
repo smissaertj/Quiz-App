@@ -30,7 +30,7 @@ const changePageState = () => {
 
     // Enable logout
     let linkLogin = document.getElementById('linkLogin');
-    linkLogin.textContent = 'Logout';
+    linkLogin.textContent = '<Logout>';
     linkLogin.removeAttribute('data-bs-toggle');
     linkLogin.removeAttribute('data-bs-target');
     linkLogin.addEventListener('click', function(){
@@ -141,8 +141,6 @@ btnLogin.addEventListener('click', function(ev){
   let modalHeader = document.querySelectorAll('.modal-header')[1];
   let loginForm = document.getElementById('loginForm');
   loginForm.parentElement.removeChild(loginForm);
-  // let modalBody = document.querySelectorAll('.modal-body')[1];
-  // let p = document.createElement('p');
   let btnClose = document.getElementById('loginBtnClose');
 
   if (passwordMatch){

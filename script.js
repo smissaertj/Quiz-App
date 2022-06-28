@@ -9,6 +9,12 @@ const currentLoggedInUser = () => {
   return JSON.parse(localStorage.getItem('currentLoggedInUser'));
 }
 
+const updateUserProfile = (userIndex, key, value) => {
+  let users = retrieveUsers();
+  users[userIndex][key] = value;
+  localStorage.setItem('userProfiles', JSON.stringify(users));
+}
+
 const changePageState = () => {
   let loggedInUser = currentLoggedInUser();
 
@@ -68,7 +74,8 @@ const createUserProfile = (username, passwordHash) => {
   } else {
     user = {
       'username': username,
-      'password': passwordHash
+      'password': passwordHash,
+      'totalPoints': 0
     }
     users.push(user);
     localStorage.setItem('userProfiles', JSON.stringify(users));
@@ -244,7 +251,7 @@ let quiz = {
     if (answerIndex === currentQuestion.correctAnswerID){
       btn.classList.add('btn-success');
       btn.classList.remove('playQuizBtn');
-      // updatePoints()
+      this.score++ // increment the score
     } else {
       btn.classList.add('btn-danger');
       btn.classList.remove('playQuizBtn');
@@ -259,16 +266,18 @@ let quiz = {
       this.showQuestion();
     } else {
       console.log('END OF GAME')
+      console.log(this.score);
+      this.saveState(); // Update user profile with new score
       // Show result screen
     }
   },
 
-  updatePoints: function(){
-
-  },
-
   saveState: function(){
-
+    // update the user profile with the new score.
+    let userIndex = currentLoggedInUser().userIndex;
+    let totalPoints = retrieveUsers()[userIndex].totalPoints;
+    totalPoints += this.score;
+    updateUserProfile(userIndex, 'totalPoints', totalPoints);
   }
 }
 

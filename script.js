@@ -9,6 +9,11 @@ const currentLoggedInUser = () => {
   return JSON.parse(localStorage.getItem('currentLoggedInUser'));
 }
 
+const retrieveUserValue = (key) => {
+  let user = currentLoggedInUser()
+  return retrieveUsers()[user.userIndex][key];
+}
+
 const updateUserProfile = (userIndex, key, value) => {
   let users = retrieveUsers();
   users[userIndex][key] = value;
@@ -75,7 +80,8 @@ const createUserProfile = (username, passwordHash) => {
     user = {
       'username': username,
       'password': passwordHash,
-      'totalPoints': 0
+      'totalPoints': 0,
+      'currentRank': 0,
     }
     users.push(user);
     localStorage.setItem('userProfiles', JSON.stringify(users));
@@ -163,6 +169,17 @@ const updateCards = () => {
   }
 }
 
+const updateScoreRank = () => {
+  let totalPoints = retrieveUserValue('totalPoints');
+  let currentRank = retrieveUserValue('currentRank');
+
+  let displayTotalPoints = document.getElementById('displayTotalPoints');
+  displayTotalPoints.textContent = `Total Points: ${totalPoints}`;
+
+  let displayCurrentRank = document.getElementById('displayCurrentRank');
+  displayCurrentRank.textContent = `Current Rank: ${currentRank}`;
+}
+
 
 function showUserProfile(){
   let user = currentLoggedInUser();
@@ -177,6 +194,7 @@ function showUserProfile(){
   profileTitle.textContent = `Welcome ${userName}!`;
 
   updateCards();
+  updateScoreRank();
 }
 
 
@@ -278,6 +296,8 @@ let quiz = {
     let totalPoints = retrieveUsers()[userIndex].totalPoints;
     totalPoints += this.score;
     updateUserProfile(userIndex, 'totalPoints', totalPoints);
+    updateUserProfile(userIndex, 'currentRank', Math.floor(totalPoints / 10));
+    updateScoreRank(); // reflect the changes in the profile hero
   }
 }
 

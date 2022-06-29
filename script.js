@@ -279,10 +279,10 @@ let quiz = {
       this.timer.style.width = timerPosition + '%';
       this.timer.setAttribute('aria-valuenow', timerPosition)
 
-      if (timerPosition < 75){
+      if (timerPosition < 70){
         this.timer.classList.replace('bg-secondary', 'bg-warning')
       }
-      if (timerPosition < 25){
+      if (timerPosition < 40){
         this.timer.classList.replace('bg-warning', 'bg-danger')
       }
       if (timerPosition <= 0) {

@@ -265,6 +265,7 @@ let quiz = {
     for (let answer of answers) {
       let btn = document.createElement('button');
       btn.classList.add('btn', 'playQuizBtn', 'btn-answer');
+      // btn.style.display = 'inline-block';
       btn.textContent = answer;
       answerDiv.appendChild(btn);
     }
@@ -283,11 +284,11 @@ let quiz = {
     let btns = document.querySelectorAll('.btn-answer');
     let btn = btns[answerIndex];
     if (answerIndex === currentQuestion.correctAnswerID){
-      btn.classList.add('btn-success');
+      btn.classList.add('btn-success', 'animate__animated', 'animate__heartBeat');
       btn.classList.remove('playQuizBtn');
       this.score++ // increment the score
     } else {
-      btn.classList.add('btn-danger');
+      btn.classList.add('btn-danger', 'animate__animated', 'animate__shakeX');
       btn.classList.remove('playQuizBtn');
     }
     // Prevent user from clicking other buttons
@@ -299,7 +300,7 @@ let quiz = {
       this.currentQuestion++;
       this.showQuestion();
     } else {
-      this.saveState(); // Update user profile with new score
+      // this.saveState(); // Update user profile with new score
       // TODO Show result screen
     }
   },

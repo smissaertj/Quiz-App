@@ -325,7 +325,7 @@ let quiz = {
     let btns = document.querySelectorAll('.btn-answer');
     let btn = btns[answerIndex];
     if (answerIndex === currentQuestion.correctAnswerID){
-      btn.classList.add('btn-success', 'animate__animated', 'animate__heartBeat');
+      btn.classList.add('btn-success', 'animate__animated', 'animate__shakeY');
       btn.classList.remove('playQuizBtn');
       this.score++ // increment the score
     } else {

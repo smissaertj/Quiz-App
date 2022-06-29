@@ -271,18 +271,25 @@ let quiz = {
 
     this.timer = document.getElementById('progressbarTimer');
     this.timer.setAttribute('aria-valuenow', '100')
+    this.timer.classList.replace('bg-danger', 'bg-secondary')
     let timerPosition = 100;
+
     this.interval = setInterval(() => {
       timerPosition -= 0.05;
       this.timer.style.width = timerPosition + '%';
       this.timer.setAttribute('aria-valuenow', timerPosition)
 
-      if (timerPosition <= 0){
+      if (timerPosition < 75){
+        this.timer.classList.replace('bg-secondary', 'bg-warning')
+      }
+      if (timerPosition < 25){
+        this.timer.classList.replace('bg-warning', 'bg-danger')
+      }
+      if (timerPosition <= 0) {
         clearInterval(this.interval);
         this.score--; // penalty for not answering within the time limit
         this.nextQuestion();
       }
-
     }, 1)
 
     let currentQuestion = questions[this.questionList[this.currentQuestion]];

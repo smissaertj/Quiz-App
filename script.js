@@ -195,6 +195,14 @@ function showUserProfile(){
   updateScoreRank();
 }
 
+/*
+Show Leaderboard
+*/
+
+const showLeaderBoard = () => {
+  console.log('Hello from leaderboard')
+}
+
 
 /*
 Quiz Logic
@@ -239,13 +247,13 @@ let quiz = {
   },
 
   showQuestion: function(){
-    let timer = document.getElementById('progressbarTimer');
-    timer.setAttribute('aria-valuenow', '100')
+    this.timer = document.getElementById('progressbarTimer');
+    this.timer.setAttribute('aria-valuenow', '100')
     let timerPosition = 100;
     this.interval = setInterval(() => {
       timerPosition -= 0.05;
-      timer.style.width = timerPosition + '%';
-      timer.setAttribute('aria-valuenow', timerPosition)
+      this.timer.style.width = timerPosition + '%';
+      this.timer.setAttribute('aria-valuenow', timerPosition)
 
       if (timerPosition <= 0){
         clearInterval(this.interval);
@@ -256,18 +264,18 @@ let quiz = {
     }, 1)
 
     let currentQuestion = questions[this.questionList[this.currentQuestion]];
-    let questionTitle = document.getElementById('questionTitle');
-    questionTitle.textContent = currentQuestion.question;
+    this.questionTitle = document.getElementById('questionTitle');
+    this.questionTitle.textContent = currentQuestion.question;
 
     let answers = currentQuestion.answers;
-    let answerDiv = document.getElementById('quizAnswers');
-    answerDiv.innerHTML = ''; // Clear answers of the previous question
+    this.answerDiv = document.getElementById('quizAnswers');
+    this.answerDiv.innerHTML = ''; // Clear answers of the previous question
     for (let answer of answers) {
       let btn = document.createElement('button');
       btn.classList.add('btn', 'playQuizBtn', 'btn-answer');
       // btn.style.display = 'inline-block';
       btn.textContent = answer;
-      answerDiv.appendChild(btn);
+      this.answerDiv.appendChild(btn);
     }
 
     let btnAnswers = document.querySelectorAll('.btn-answer');
@@ -300,8 +308,26 @@ let quiz = {
       this.currentQuestion++;
       this.showQuestion();
     } else {
-      // this.saveState(); // Update user profile with new score
       // TODO Show result screen
+      let resultEl = document.createElement('p');
+      resultEl.textContent = `You scored ${this.score} point(s)!`
+      resultEl.classList.add('text-center');
+
+      this.answerDiv.innerHTML = '';
+      this.answerDiv.appendChild(resultEl);
+
+      this.questionTitle.style.display = 'none';
+
+      let timerDiv = document.getElementById('timerDiv');
+      timerDiv.style.display = 'none';
+
+      let btnNext = document.getElementById('btnNext');
+      btnNext.textContent = 'Leaderboard';
+      btnNext.removeAttribute('onclick');
+      btnNext.addEventListener('click', () =>{
+        this.saveState();
+        showLeaderBoard();
+      })
     }
   },
 

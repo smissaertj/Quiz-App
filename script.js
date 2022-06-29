@@ -299,13 +299,18 @@ let quiz = {
       this.answerDiv.appendChild(btn);
     }
 
+    this.btnNext = document.getElementById('btnNext');
+    this.btnNext.classList.add('disabled');
     let btnAnswers = document.querySelectorAll('.btn-answer');
     btnAnswers.forEach((element, index) => {
       element.addEventListener('click', () => {
         clearInterval(this.interval);
         this.checkAnswer(index);
+        this.btnNext.classList.remove('disabled');
       })
     })
+
+
   },
 
   checkAnswer: function(answerIndex){

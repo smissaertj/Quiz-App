@@ -30,7 +30,7 @@
               <a class="nav-link disabled" href="#" id="linkProfile" onclick="showUserProfile()">&ltProfile&gt</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">&ltLeaderboard&gt</a>
+              <a class="nav-link" href="#" id="linkLeaderBoard" onclick="showLeaderBoard()">&ltLeaderboard&gt</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login" id="linkLogin">&ltLogin&gt</a>
@@ -122,7 +122,8 @@
           </div>
         </div>
       </div>
-    </div>
+
+
 <!-- Quiz Card -->
       <div class="col col-lg-8 my-3" id="quizCard">
         <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
@@ -135,6 +136,43 @@
         </div>
       </div>
 
+<!-- Result Card -->
+      <div class="col col-lg-8 my-3" id="resultCard">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+          <p class="pb-1 display-8 fw-bold text-center" id="endScore"></p>
+          <button class="btn btn-outline-secondary my-3 mx-auto" id="btnLeaderBoard">Leaderboard</button>
+        </div>
+      </div>
+
+<!-- Leaderboard table -->
+      <div class="col col-lg-8 my-3" id="leaderBoard">
+        <table class="table" id="leaderBoardTable">
+          <thead>
+            <tr>
+              <th scope="col">Rank</th>
+              <th scope="col">Username</th>
+              <th scope="col">Total Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Larry the Bird</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
 <!-- Sign up Modal-->
     <div class="modal fade modal-signin py-5 glass" tabindex="-1" role="dialog" id="getStarted">
@@ -204,7 +242,6 @@
   </div>
 </div>
 
-<!--  <script src="questions.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="script.js"></script>
   <script src="questions.js"></script>

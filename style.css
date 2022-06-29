@@ -6,7 +6,7 @@ body, .modal {
     font-family: 'Trispace', sans-serif;
 }
 
-#profileContainer, #quizCard {
+#profileContainer, #quizCard, #leaderBoard, #resultCard {
     display: none;
 }
 

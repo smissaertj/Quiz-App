@@ -159,14 +159,6 @@ btnLogin.addEventListener('click', function(ev){
 /*
 User Profile
 */
-const updateCards = () => {
-  let quizButtons = document.querySelectorAll('.startQuizButton');
-
-  for (let quizIndex in quizButtons){
-    quizButtons[quizIndex].innerHTML = `<button type="button" class="btn btn-outline-secondary btn-sm px-4 playQuizBtn" onclick="quiz.play(${quizIndex})">Play!</button>`
-  }
-}
-
 const updateScoreRank = () => {
   let totalPoints = retrieveUserValue('totalPoints');
   let currentRank = retrieveUserValue('currentRank');
@@ -191,7 +183,20 @@ function showUserProfile(){
   let profileTitle = document.getElementById('profileTitle');
   profileTitle.textContent = `Welcome ${userName}!`;
 
-  updateCards();
+  let profileCards = document.querySelectorAll('.profileCard');
+  profileCards.forEach(card => card.style.display = 'block');
+
+  let quizButtons = document.querySelectorAll('.startQuizButton');
+  for (let quizIndex in quizButtons){
+    quizButtons[quizIndex].innerHTML = `<button type="button" class="btn btn-outline-secondary btn-sm px-4 playQuizBtn" onclick="quiz.play(${quizIndex})">Play!</button>`
+  }
+
+  let leaderboardDiv = document.getElementById('leaderBoard');
+  leaderboardDiv.style.display = 'none';
+
+  let linkProfile = document.getElementById('linkProfile');
+  linkProfile.classList.add('disabled');
+
   updateScoreRank();
 }
 
@@ -201,6 +206,20 @@ Show Leaderboard
 
 const showLeaderBoard = () => {
   console.log('Hello from leaderboard')
+  let profileCards = document.querySelectorAll('.profileCard');
+  profileCards.forEach(card => card.style.display = 'none');
+
+  let resultCard = document.getElementById('resultCard');
+  resultCard.style.display = 'none';
+
+  let leaderboardDiv = document.getElementById('leaderBoard');
+  leaderboardDiv.style.display = 'block';
+
+  let linkProfile = document.getElementById('linkProfile');
+  linkProfile.classList.remove('disabled');
+
+  let table = document.getElementById('leaderBoardTable');
+
 }
 
 
@@ -247,6 +266,9 @@ let quiz = {
   },
 
   showQuestion: function(){
+    this.linkLeaderBoard = document.getElementById('linkLeaderBoard');
+    this.linkLeaderBoard.classList.add('disabled');
+
     this.timer = document.getElementById('progressbarTimer');
     this.timer.setAttribute('aria-valuenow', '100')
     let timerPosition = 100;
@@ -273,7 +295,6 @@ let quiz = {
     for (let answer of answers) {
       let btn = document.createElement('button');
       btn.classList.add('btn', 'playQuizBtn', 'btn-answer');
-      // btn.style.display = 'inline-block';
       btn.textContent = answer;
       this.answerDiv.appendChild(btn);
     }
@@ -308,26 +329,25 @@ let quiz = {
       this.currentQuestion++;
       this.showQuestion();
     } else {
-      // TODO Show result screen
-      let resultEl = document.createElement('p');
-      resultEl.textContent = `You scored ${this.score} point(s)!`
-      resultEl.classList.add('text-center');
+      this.linkLeaderBoard.classList.remove('disabled');
 
-      this.answerDiv.innerHTML = '';
-      this.answerDiv.appendChild(resultEl);
+      let quizCard = document.getElementById('quizCard');
+      quizCard.style.display = 'none';
 
-      this.questionTitle.style.display = 'none';
+      let resultCard = document.getElementById('resultCard');
+      resultCard.style.display = 'block';
 
-      let timerDiv = document.getElementById('timerDiv');
-      timerDiv.style.display = 'none';
+      let endScore = document.getElementById('endScore');
+      endScore.textContent = `You scored ${this.score} point(s)!`
 
-      let btnNext = document.getElementById('btnNext');
-      btnNext.textContent = 'Leaderboard';
-      btnNext.removeAttribute('onclick');
-      btnNext.addEventListener('click', () =>{
-        this.saveState();
+      let btnLeaderBoard = document.getElementById('btnLeaderBoard');
+      btnLeaderBoard.classList.remove('disabled');
+      btnLeaderBoard.addEventListener('click', () =>{
+        // this.saveState();
         showLeaderBoard();
       })
+
+      this.saveState();
     }
   },
 

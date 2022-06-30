@@ -22,10 +22,10 @@ const updateUserProfile = (userIndex, key, value) => {
 
 const changePageState = () => {
   let loggedInUser = currentLoggedInUser();
+  let linkProfile = document.getElementById('linkProfile');
 
   if (loggedInUser) {
     // Enable the Profile page
-    let linkProfile = document.getElementById('linkProfile');
     linkProfile.classList.remove('disabled');
 
     // Enable logout
@@ -43,6 +43,8 @@ const changePageState = () => {
     btnGetStarted.removeAttribute('data-bs-toggle');
     btnGetStarted.removeAttribute('data-bs-target');
     btnGetStarted.setAttribute('onclick', "showUserProfile()");
+  } else {
+    linkProfile.classList.add('disabled');
   }
 }
 
@@ -205,8 +207,6 @@ Show Leaderboard
 */
 
 const showLeaderBoard = () => {
-  console.log('Hello from leaderboard')
-  let profileCards = document.querySelectorAll('.profileCard');
   profileCards.forEach(card => card.style.display = 'none');
 
   let resultCard = document.getElementById('resultCard');
@@ -220,6 +220,7 @@ const showLeaderBoard = () => {
 
   let table = document.getElementById('leaderBoardTable');
 
+  changePageState();
 }
 
 

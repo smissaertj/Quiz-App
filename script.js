@@ -278,7 +278,7 @@ let quiz = {
       if (/^bg-.*$/.test(el)){
         this.timer.classList.replace(el, 'bg-secondary')
       }
-    })
+    });
 
     let timerPosition = 100;
     this.interval = setInterval(() => {

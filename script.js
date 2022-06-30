@@ -66,16 +66,6 @@ const logoutUser = () => {
   location.reload();
 }
 
-const sortDataTable = () => {
-  let table = new DataTable('#leaderBoardTable', {
-    ordering: true,
-    order: [[1, 'desc']],
-    info: false,
-    searching: false,
-    paging: false,
-  });
-}
-
 
 /*
 User Sign up
@@ -222,6 +212,10 @@ const populateLeaderBoard = () => {
 
   let users = retrieveUsers();
 
+  // Sort our Array of user objects descending on the totalPoints property
+  users.sort((a, b) => (a.totalPoints > b.totalPoints) ? -1 : 1)
+
+  // loop and add to table
   for (let user of users){
     if (user.totalPoints > 0){
       let row = `<tr><td>${user.username}</td><td>${user.totalPoints}</td></tr>`;
@@ -229,7 +223,6 @@ const populateLeaderBoard = () => {
     }
   }
   tableBody.innerHTML = tableBodyContent;
-  sortDataTable();
 }
 
 

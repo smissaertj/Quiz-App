@@ -66,6 +66,16 @@ const logoutUser = () => {
   location.reload();
 }
 
+const sortDataTable = () => {
+  let table = new DataTable('#leaderBoardTable', {
+    ordering: true,
+    order: [[1, 'desc']],
+    info: false,
+    searching: false,
+    paging: false,
+  });
+}
+
 
 /*
 User Sign up
@@ -219,6 +229,7 @@ const populateLeaderBoard = () => {
     }
   }
   tableBody.innerHTML = tableBodyContent;
+  sortDataTable();
 }
 
 
@@ -404,15 +415,4 @@ let quiz = {
 /*
  On Page (re)Load Functions
 */
-changePageState()
-// document.addEventListener('DOMContentLoaded', function () {
-//     let table = new DataTable('#leaderBoardTable');
-// });
-$(document).ready(function () {
-    $('#leaderBoardTable').DataTable({
-      order: [[1, 'desc']],
-      info: false,
-      paging: false,
-      searching: false,
-    });
-});
+changePageState();

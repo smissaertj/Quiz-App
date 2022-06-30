@@ -169,7 +169,13 @@ const updateScoreRank = () => {
   displayTotalPoints.textContent = `Total Points: ${totalPoints}`;
 
   let displayCurrentRank = document.getElementById('displayCurrentRank');
-  displayCurrentRank.textContent = `Current Rank: ${currentRank}`;
+  // displayCurrentRank.textContent = `Current Rank: ${currentRank}`;
+  if (totalPoints >= 10){
+    displayCurrentRank.innerHTML = '<i class="fa-solid fa-star"></i>'.repeat(currentRank)
+  } else {
+    displayCurrentRank.innerHTML = '<i class="fa-solid fa-star-half"></i>'
+  }
+
 }
 
 
@@ -184,6 +190,9 @@ function showUserProfile(){
 
   let profileTitle = document.getElementById('profileTitle');
   profileTitle.textContent = `Welcome ${userName}!`;
+
+  let profileCardsRow = document.getElementById('homeCardsContainer').firstElementChild;
+  profileCardsRow.classList.remove('glass');
 
   let profileCards = document.querySelectorAll('.profileCard');
   profileCards.forEach(card => card.style.display = 'block');
@@ -230,6 +239,9 @@ const populateLeaderBoard = () => {
 Show Leaderboard
 */
 const showLeaderBoard = () => {
+  let profileCardsRow = document.getElementById('homeCardsContainer').firstElementChild;
+  profileCardsRow.classList.remove('glass');
+
   let profileCards = document.querySelectorAll('.profileCard');
   profileCards.forEach(card => card.style.display = 'none');
 
@@ -380,7 +392,8 @@ let quiz = {
       resultCard.style.display = 'block';
 
       let endScore = document.getElementById('endScore');
-      endScore.textContent = `You scored ${this.score} point(s)!`
+      endScore.innerHTML = `<i class="fa-solid fa-flag-checkered fa-3x"></i>
+                            <p>Correct Answers: ${this.score}</p>`
 
       let btnLeaderBoard = document.getElementById('btnLeaderBoard');
       btnLeaderBoard.classList.remove('disabled');

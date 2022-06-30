@@ -65,12 +65,12 @@
       <div class="row hero p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3 shadow-lg">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
           <h1 class="display-5 fw-bold lh-1 text-white" id="profileTitle"></h1>
-          <p class="lead fw-bolder">Play a Quiz to increase your Total Points and Current Rank.</p>
-          <p class="lead font-">Your Rank increases with every 10 points you earn. You have 10 seconds to answer a question, and you will incur a penalty of
+          <p class="lead fw-bolder">Play a Quiz to increase your Total Points.<br>Earn 1 Star for every 10 points.</p>
+          <p class="lead font-">You have 10 seconds to answer a question, you will receive a penalty of
           -1 point if you do not answer within the time limit. A correct answer gives you 1 point, a wrong answer does not give any points or penalties.</p>
           <ul class="list-group list-group-flush bg-transparent">
             <li class="list-group-item bg-transparent fw-bold" id="displayTotalPoints" data-toggle="tooltip" data-placement="right" title="The total amount of points you earned by playing any of the quizzes.">Total Points: 0</li>
-            <li class="list-group-item bg-transparent fw-bold" id="displayCurrentRank" data-toggle="tooltip" data-placement="right" title="You need 30 points to earn 1 Star.">Current Rank: </li>
+            <li class="list-group-item bg-transparent fw-bold" id="displayCurrentRank" data-toggle="tooltip" data-placement="right" title="You need 10 points to earn 1 Star.">Current Rank: </li>
           </ul>
         </div>
         <div class="col-lg-2 p-0 mx-auto shadow-lg">
@@ -140,7 +140,7 @@
 <!-- Result Card -->
       <div class="col col-lg-8 my-3" id="resultCard">
         <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-          <p class="pb-1 display-8 fw-bold text-center" id="endScore"></p>
+          <div class="pb-1 display-8 fw-bold text-center" id="endScore"></div>
           <button class="btn btn-outline-secondary my-3 mx-auto" id="btnLeaderBoard">Leaderboard</button>
         </div>
       </div>

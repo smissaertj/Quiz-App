@@ -402,4 +402,15 @@ let quiz = {
 /*
  On Page (re)Load Functions
 */
-changePageState();
+changePageState()
+// document.addEventListener('DOMContentLoaded', function () {
+//     let table = new DataTable('#leaderBoardTable');
+// });
+$(document).ready(function () {
+    $('#leaderBoardTable').DataTable({
+      order: [[1, 'desc']],
+      info: false,
+      paging: false,
+      searching: false,
+    });
+});

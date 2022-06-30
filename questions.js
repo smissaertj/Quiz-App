@@ -162,7 +162,7 @@ const questions = [
     id: 22,
     category: 0,
     question: 'How can we change our paragraph text color to red?',
-    answers: ['<p style="color: #ff0000;">','<p style="color: red;">','Both A. and B.', 'None of the above'],
+    answers: ['<p style="color: #ff0000;">','<p style="color: red;">','Both of the above', 'None of the above'],
     correctAnswerID: 2
   },
   {

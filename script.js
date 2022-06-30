@@ -202,11 +202,29 @@ function showUserProfile(){
   updateScoreRank();
 }
 
+
+/*
+  Populate the LeaderBoard
+*/
+const populateLeaderBoard = () => {
+  let tableBody = document.getElementById('leaderBoardTableBody')
+  let tableBodyContent = '';
+
+  let users = retrieveUsers();
+
+  for (let user of users){
+    let row = `<tr><td>${user.username}</td><td>${user.totalPoints}</td></tr>`;
+    tableBodyContent += row;
+  }
+  tableBody.innerHTML = tableBodyContent;
+}
+
+
 /*
 Show Leaderboard
 */
-
 const showLeaderBoard = () => {
+  let profileCards = document.querySelectorAll('.profileCard');
   profileCards.forEach(card => card.style.display = 'none');
 
   let resultCard = document.getElementById('resultCard');
@@ -218,8 +236,7 @@ const showLeaderBoard = () => {
   let linkProfile = document.getElementById('linkProfile');
   linkProfile.classList.remove('disabled');
 
-  let table = document.getElementById('leaderBoardTable');
-
+  populateLeaderBoard();
   changePageState();
 }
 
@@ -227,7 +244,6 @@ const showLeaderBoard = () => {
 /*
 Quiz Logic
 */
-
 let quiz = {
   play: function(quizCategory){
     /*

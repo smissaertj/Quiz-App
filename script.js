@@ -44,6 +44,7 @@ const changePageState = () => {
     btnGetStarted.removeAttribute('data-bs-target');
     btnGetStarted.setAttribute('onclick', "showUserProfile()");
   } else {
+    // Disable the profile link if no user is logged in.
     linkProfile.classList.add('disabled');
   }
 }
@@ -55,6 +56,7 @@ const closeModal = (modalId) => {
 }
 
 const loginUser = (userName, userIndex) => {
+  // login a user
   let user = { userName: userName, userIndex: userIndex};
   localStorage.setItem('currentLoggedInUser', JSON.stringify(user)); // Set the user as logged in.
   changePageState();
@@ -62,6 +64,7 @@ const loginUser = (userName, userIndex) => {
 }
 
 const logoutUser = () => {
+  // logout a user
   localStorage.removeItem('currentLoggedInUser');
   location.reload();
 }
@@ -74,6 +77,7 @@ const createUserProfile = (username, passwordHash) => {
   // retrieve the existing users
   let users = retrieveUsers();
 
+  // check if a username already exists
   let usernameExists = users.some(user => user.username === username);
 
   if (usernameExists) {
@@ -93,7 +97,7 @@ const createUserProfile = (username, passwordHash) => {
 
 
 let btnSignUp = document.getElementById('btnSignUp');
-btnSignUp.addEventListener('click', function(ev){
+  btnSignUp.addEventListener('click', function(ev){
   ev.preventDefault();
 
   let userName =document.getElementById('signupUsername').value;
@@ -107,6 +111,7 @@ btnSignUp.addEventListener('click', function(ev){
   let btnClose = document.getElementById('signupBtnClose');
 
   if (!createUserProfile(userName, passwordHash)){
+    // username exists
     modalHeader.firstElementChild.textContent = "Username exists.";
     p.innerHTML = '<small>Please choose a different username.</small>';
     modalBody.appendChild(p);
@@ -115,6 +120,7 @@ btnSignUp.addEventListener('click', function(ev){
       closeModal('getStarted');
     })
   } else {
+    // username does not exist and the new profile was created.
     modalHeader.firstElementChild.textContent = "Account Created!";
     p.innerHTML = '<small>You may close this window and login.</small>';
     modalBody.appendChild(p);
@@ -162,6 +168,7 @@ btnLogin.addEventListener('click', function(ev){
 User Profile
 */
 const updateScoreRank = () => {
+  // update the Total Points and Stars in Profile
   let totalPoints = retrieveUserValue('totalPoints');
   let currentRank = retrieveUserValue('currentRank');
 
@@ -179,6 +186,7 @@ const updateScoreRank = () => {
 
 
 function showUserProfile(){
+  // Display the Profile section
   let user = currentLoggedInUser();
   let userName = user.userName[0].toUpperCase() + user.userName.slice(1);
   let heroContainer = document.getElementById('heroContainer');
@@ -215,6 +223,7 @@ function showUserProfile(){
   Populate the LeaderBoard
 */
 const populateLeaderBoard = () => {
+  // retrieve data from localStorage and build the leaderboard table
   let tableBody = document.getElementById('leaderBoardTableBody')
   let tableBodyContent = '';
 
@@ -238,6 +247,7 @@ const populateLeaderBoard = () => {
 Show Leaderboard
 */
 const showLeaderBoard = () => {
+  // display the leaderboard
   let profileCardsRow = document.getElementById('homeCardsContainer').firstElementChild;
   profileCardsRow.classList.remove('glass');
 
@@ -268,6 +278,8 @@ let quiz = {
     */
     this.user = currentLoggedInUser();
     this.score = 0;
+    this.questionPoolLength = 10
+    this.currentQuestion = 0
 
     // Construct an array of question indexes from the chosen category
     this.questionList = questions.map((el, index) => {
@@ -282,12 +294,8 @@ let quiz = {
       [this.questionList[i], this.questionList[j]] = [this.questionList[j], this.questionList[i]];
     }
 
-    // Limit the number of questions to 10
-    this.questionPoolLength = 10
+    // Limit the number of questions
     this.questionList = this.questionList.slice(0,this.questionPoolLength)
-
-    // Sets the index of the question to be shown - we increment this after each question
-    this.currentQuestion = 0
 
     // Hide profile cards, show quiz card
     let profileCardsRow = document.getElementById('homeCardsContainer').firstElementChild;
@@ -301,6 +309,7 @@ let quiz = {
   },
 
   showQuestion: function(){
+    // We don't want the user to navigate away when a quiz is ongoing.
     this.linkLeaderBoard = document.getElementById('linkLeaderBoard');
     this.linkLeaderBoard.classList.add('disabled');
 
@@ -333,6 +342,7 @@ let quiz = {
       }
     }, 1)
 
+    // populate the question and answers
     let currentQuestion = questions[this.questionList[this.currentQuestion]];
     this.questionTitle = document.getElementById('questionTitle');
     this.questionTitle.textContent = currentQuestion.question;
@@ -347,8 +357,11 @@ let quiz = {
       this.answerDiv.appendChild(btn);
     }
 
+    // prevent the user from clicking Next until an answer was clicked.
     this.btnNext = document.getElementById('btnNext');
     this.btnNext.classList.add('disabled');
+
+    // listen for an answer
     let btnAnswers = document.querySelectorAll('.btn-answer');
     btnAnswers.forEach((element, index) => {
       element.addEventListener('click', () => {
@@ -367,13 +380,11 @@ let quiz = {
     let btn = btns[answerIndex];
     if (answerIndex === currentQuestion.correctAnswerID){
       btn.classList.add('btn-success', 'animate__animated', 'animate__shakeY');
-      btn.classList.remove('playQuizBtn');
       this.score++ // increment the score
     } else {
       btn.classList.add('btn-danger', 'animate__animated', 'animate__shakeX');
-      btn.classList.remove('playQuizBtn');
     }
-    // Prevent user from clicking other buttons
+    // Prevent user from clicking other answers once an answer was already clicked.
     btns.forEach(button => button.disabled = true);
   },
 
@@ -382,6 +393,7 @@ let quiz = {
       this.currentQuestion++;
       this.showQuestion();
     } else {
+      // when we reached the end of the question pool we show the result
       this.linkLeaderBoard.classList.remove('disabled');
 
       let quizCard = document.getElementById('quizCard');

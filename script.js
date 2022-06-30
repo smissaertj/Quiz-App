@@ -213,8 +213,10 @@ const populateLeaderBoard = () => {
   let users = retrieveUsers();
 
   for (let user of users){
-    let row = `<tr><td>${user.username}</td><td>${user.totalPoints}</td></tr>`;
-    tableBodyContent += row;
+    if (user.totalPoints > 0){
+      let row = `<tr><td>${user.username}</td><td>${user.totalPoints}</td></tr>`;
+      tableBodyContent += row;
+    }
   }
   tableBody.innerHTML = tableBodyContent;
 }

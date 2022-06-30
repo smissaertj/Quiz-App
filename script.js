@@ -169,7 +169,6 @@ const updateScoreRank = () => {
   displayTotalPoints.textContent = `Total Points: ${totalPoints}`;
 
   let displayCurrentRank = document.getElementById('displayCurrentRank');
-  // displayCurrentRank.textContent = `Current Rank: ${currentRank}`;
   if (totalPoints >= 10){
     displayCurrentRank.innerHTML = '<i class="fa-solid fa-star"></i>'.repeat(currentRank)
   } else {
@@ -269,7 +268,6 @@ let quiz = {
     */
     this.user = currentLoggedInUser();
     this.score = 0;
-    this.timeLimit = 5000;
 
     // Construct an array of question indexes from the chosen category
     this.questionList = questions.map((el, index) => {
@@ -284,8 +282,9 @@ let quiz = {
       [this.questionList[i], this.questionList[j]] = [this.questionList[j], this.questionList[i]];
     }
 
-    // TODO limit the list of questions to N
-
+    // Limit the number of questions to 10
+    this.questionPoolLength = 10
+    this.questionList = this.questionList.slice(0,this.questionPoolLength)
 
     // Sets the index of the question to be shown - we increment this after each question
     this.currentQuestion = 0
@@ -392,8 +391,8 @@ let quiz = {
       resultCard.style.display = 'block';
 
       let endScore = document.getElementById('endScore');
-      endScore.innerHTML = `<i class="fa-solid fa-flag-checkered fa-3x"></i>
-                            <p>Correct Answers: ${this.score}</p>`
+      endScore.innerHTML = `<i class="fa-solid fa-flag-checkered fa-3x my-2"></i>
+                            <p>Correct Answers: ${this.score}/${this.questionPoolLength}</p>`
 
       let btnLeaderBoard = document.getElementById('btnLeaderBoard');
       btnLeaderBoard.classList.remove('disabled');

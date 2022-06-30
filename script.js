@@ -248,11 +248,12 @@ let quiz = {
       const j = Math.floor(Math.random() * (i + 1));
       [this.questionList[i], this.questionList[j]] = [this.questionList[j], this.questionList[i]];
     }
+
+    // TODO limit the list of questions to N
+
+
     // Sets the index of the question to be shown - we increment this after each question
     this.currentQuestion = 0
-
-    // Track how many questions were shown to the user
-    this.questionCount = 0;
 
     // Hide profile cards, show quiz card
     let profileCardsRow = document.getElementById('homeCardsContainer').firstElementChild;
@@ -270,20 +271,26 @@ let quiz = {
     this.linkLeaderBoard.classList.add('disabled');
 
     this.timer = document.getElementById('progressbarTimer');
-    this.timer.setAttribute('aria-valuenow', '100')
-    this.timer.classList.replace('bg-danger', 'bg-secondary')
-    let timerPosition = 100;
+    this.timer.setAttribute('aria-valuenow', '100');
 
+    // Reset timer color on each new question
+    this.timer.className.split(' ').some((el) => {
+      if (/^bg-.*$/.test(el)){
+        this.timer.classList.replace(el, 'bg-secondary')
+      }
+    })
+
+    let timerPosition = 100;
     this.interval = setInterval(() => {
       timerPosition -= 0.05;
       this.timer.style.width = timerPosition + '%';
-      this.timer.setAttribute('aria-valuenow', timerPosition)
+      this.timer.setAttribute('aria-valuenow', timerPosition);
 
       if (timerPosition < 70){
-        this.timer.classList.replace('bg-secondary', 'bg-warning')
+        this.timer.classList.replace('bg-secondary', 'bg-warning');
       }
       if (timerPosition < 40){
-        this.timer.classList.replace('bg-warning', 'bg-danger')
+        this.timer.classList.replace('bg-warning', 'bg-danger');
       }
       if (timerPosition <= 0) {
         clearInterval(this.interval);

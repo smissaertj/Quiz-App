@@ -404,7 +404,7 @@ let quiz = {
 
       let endScore = document.getElementById('endScore');
       endScore.innerHTML = `<i class="fa-solid fa-flag-checkered fa-3x my-2"></i>
-                            <p>Correct Answers: ${this.score}/${this.questionPoolLength}</p>`
+                            <p>Correct Answers: ${this.score}/${this.questionList.length}</p>`
 
       let btnLeaderBoard = document.getElementById('btnLeaderBoard');
       btnLeaderBoard.classList.remove('disabled');

@@ -238,6 +238,200 @@ const questions = [
     answers: ['At the end of the document','In the <head> section',' In the <body> section'],
     correctAnswerID: 1
   },
+  {
+    id: 33,
+    category: 1,
+    question: 'Which HTML tag is used to define an internal style sheet?',
+    answers: ['<script>','<css>',' <style>'],
+    correctAnswerID: 1
+  },
+  {
+    id: 34,
+    category: 1,
+    question: 'Which HTML attribute is used to define inline styles?',
+    answers: ['font','class','styles','style'],
+    correctAnswerID: 2
+  },
+  {
+    id: 35,
+    category: 1,
+    question: 'Which is the correct CSS syntax?',
+    answers: [' {body;color:black;}','body {color: black;}','{body:color=black;}'],
+    correctAnswerID: 1
+  },
+  {
+    id: 36,
+    category: 1,
+    question: 'How do you insert a comment in a CSS file?',
+    answers: ['// this is a comment','/* this is a comment */','// this is a comment //'],
+    correctAnswerID: 1
+  },
+  {
+    id: 37,
+    category: 1,
+    question: 'Which property is used to change the background color?',
+    answers: ['background-color','bgcolor','color'],
+    correctAnswerID: 0
+  },
+  {
+    id: 38,
+    category: 1,
+    question: 'How do you add a background color for all <h1> elements?',
+    answers: ['h1 {background-color:#FFFFFF;}','h1.all {background-color:#FFFFFF;}','all.h1 {background-color:#FFFFFF;}'],
+    correctAnswerID: 1
+  },
+  {
+    id: 39,
+    category: 1,
+    question: 'Which CSS property is used to change the text color of an element?',
+    answers: ['text-color','color','fgcolor'],
+    correctAnswerID: 1
+  },
+  {
+    id: 40,
+    category: 1,
+    question: 'Which CSS property controls the text size?',
+    answers: ['text-size','text-style','font-size','font-style'],
+    correctAnswerID: 2
+  },
+  {
+    id: 41,
+    category: 1,
+    question: 'What is the correct CSS syntax for making all the <p> elements bold?',
+    answers: ['p {font-weight:bold;}','<p style="font-size:bold;">','p {text-size:bold;}','<p style="text-size:bold;">}'],
+    correctAnswerID: 1
+  },
+  {
+    id: 42,
+    category: 1,
+    question: 'How do you display hyperlinks without an underline?',
+    answers: ['a {text-decoration:none;}','a {underline:none;}','a {text-decoration:no-underline;}'],
+    correctAnswerID: 0
+  },
+  {
+    id: 43,
+    category: 1,
+    question: 'How do you make each word in a text start with a capital letter?',
+    answers: ['You cannot do that with CSS','text-style:capitalize','text-transform:capitalize'],
+    correctAnswerID: 2
+  },
+  {
+    id: 44,
+    category: 1,
+    question: 'Which property is used to change the font of an element?',
+    answers: ['font-style','font-weight','font-family'],
+    correctAnswerID: 2
+  },
+  {
+    id: 45,
+    category: 1,
+    question: 'How do you make the text bold?',
+    answers: ['style:bold;','font-weight:bold;','font:bold;'],
+    correctAnswerID: 1
+  },
+  {
+    id: 46,
+    category: 1,
+    question: 'How do you make a list that lists its items with squares?',
+    answers: ['list: square;','list-style-type: square;','list-type: square;'],
+    correctAnswerID: 1
+  },
+  {
+    id: 47,
+    category: 1,
+    question: 'How do you select an element with id "demo"?',
+    answers: ['*demo','.demo', 'demo', '#demo'],
+    correctAnswerID: 3
+  },
+  {
+    id: 48,
+    category: 1,
+    question: 'How do you select elements with class name "test"?',
+    answers: ['test', '#test', '.test', '*test'],
+    correctAnswerID: 2
+  },
+  {
+    id: 49,
+    category: 1,
+    question: 'How do you select all p elements inside a div element?',
+    answers: ['div.p', 'div p', 'div +p'],
+    correctAnswerID: 1
+  },
+  {
+    id: 50,
+    category: 1,
+    question: 'How do you group selectors?',
+    answers: ['Separate each selector with a comma', 'Separate each selector with a plus sign', 'Separate each selector with a space'],
+    correctAnswerID: 0
+  },
+  {
+    id: 51,
+    category: 1,
+    question: 'What is the default value of the position property?',
+    answers: ['absolute', 'relative', 'static', 'fixed'],
+    correctAnswerID: 2
+  },
+  {
+    id: 52,
+    category: 1,
+    question: 'Which of the following is correct about CSS?',
+    answers: ['Style sheets allow content to be optimized for more than one type of device.',
+      'CSS can be stored locally with the help of an offline cache.',
+      'Using CSS, we can view offline websites.The cache also ensures faster loading and better overall performance of the website.',
+    'All of the above.'],
+    correctAnswerID: 3
+  },
+  {
+    id: 53,
+    category: 1,
+    question: 'Which of the following is correct about RGB Values format of CSS colors?',
+    answers: ['The color value is specified using the rgb() property.','The property takes three values, one each for red, green, and blue.',
+      'The value can be an integer between 0 and 255 or a percentage.', 'All of the above.'],
+    correctAnswerID: 3
+  },
+  {
+    id: 54,
+    category: 1,
+    question: 'Which of the following value of cursor shows it as a pointing hand?',
+    answers: ['crosshair', 'default', 'pointer', 'move'],
+    correctAnswerID: 2
+  },
+  {
+    id: 55,
+    category: 1,
+    question: 'Which of the following is a way to associate styles with your HTML document?',
+    answers: ['External CSS','Imported CSS',' Both of the above', 'None of the above'],
+    correctAnswerID: 2
+  },
+  {
+    id: 56,
+    category: 1,
+    question: 'Which of the following property is used to control the position of an image in the background?',
+    answers: ['background-color', 'background-image', 'background-repeat', 'background-position'],
+    correctAnswerID: 3
+  },
+  {
+    id: 57,
+    category: 1,
+    question: 'The # symbol specifies that the selector is?',
+    answers: ['class', 'tag', 'first', 'id'],
+    correctAnswerID: 3
+  },
+  {
+    id: 58,
+    category: 1,
+    question: 'How do you make a list not display bullet points?',
+    answers: ['list-style-type: no-bullet', 'list: none', 'bulletpoints: none', 'list-style-type: none'],
+    correctAnswerID: 3
+  },
+  {
+    id: 59,
+    category: 1,
+    question: 'A declaration is terminated by?',
+    answers: ['a period', 'an exclamation mark', 'a semi colon', 'colon'],
+    correctAnswerID: 2
+  },
+
     // END CSS QUESTIONS
 
     // START JS QUESTIONS

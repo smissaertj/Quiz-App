@@ -243,7 +243,7 @@ const questions = [
     category: 1,
     question: 'Which HTML tag is used to define an internal style sheet?',
     answers: ['<script>','<css>',' <style>'],
-    correctAnswerID: 1
+    correctAnswerID: 2
   },
   {
     id: 34,
@@ -299,7 +299,7 @@ const questions = [
     category: 1,
     question: 'What is the correct CSS syntax for making all the <p> elements bold?',
     answers: ['p {font-weight:bold;}','<p style="font-size:bold;">','p {text-size:bold;}','<p style="text-size:bold;">}'],
-    correctAnswerID: 1
+    correctAnswerID: 0
   },
   {
     id: 42,

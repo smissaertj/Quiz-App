@@ -50,6 +50,13 @@ body, .modal {
     background-color: #fb8500 !important;
 }
 
+.btn-answer {
+    font-size: 1.25em;
+    white-space: normal !important;
+    word-wrap: break-word;
+
+}
+
 .glass {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
@@ -58,3 +65,16 @@ body, .modal {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+@media only screen and (max-width: 429px) {
+    .btn-answer {
+        font-size: 1em;
+        max-width: 250px;
+    }
+}
+
+@media only screen and (min-width: 429px) and (max-width: 801px) {
+    .btn-answer {
+        font-size: 1em;
+        max-width: 600px;
+    }
+}

@@ -352,7 +352,7 @@ let quiz = {
     this.answerDiv.innerHTML = ''; // Clear answers of the previous question
     for (let answer of answers) {
       let btn = document.createElement('button');
-      btn.classList.add('btn', 'playQuizBtn', 'btn-answer');
+      btn.classList.add('btn', 'playQuizBtn', 'btn-answer', 'my-2');
       btn.textContent = answer;
       this.answerDiv.appendChild(btn);
     }

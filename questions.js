@@ -599,35 +599,35 @@ const questions = [
   {
     id: 83,
     category: 2,
-    question: 'What will be the output of the following code?\nconsole.log(typeof NaN);',
+    question: 'What will be the output of the following code? console.log(typeof NaN);',
     answers: ['NaN', 'number', 'null', 'undefined'],
     correctAnswerID: 1
   },
   {
     id: 84,
     category: 2,
-    question: 'What will be the output of the following code?\nlet array = [1, 2, 3];\narray[6] = 9;\nconsole.log(array[5]);',
+    question: 'What will be the output of the following code? let array = [1, 2, 3]; array[6] = 9; console.log(array[5]);',
     answers: ['1', '2', '9', 'undefined'],
     correctAnswerID: 3
   },
   {
     id: 85,
     category: 2,
-    question: 'What will be the output of the following code?\nconsole.log(018 - 015);',
+    question: 'What will be the output of the following code? console.log(018 - 015);',
     answers: ['NaN', '3', '5', '13'],
     correctAnswerID: 2 // 018 is decimal, 015 is octal: 18 - 13 = 5
   },
   {
     id: 86,
     category: 2,
-    question: 'What will be the output of the following code?\nconsole.log(typeof typeof 1);',
+    question: 'What will be the output of the following code? console.log(typeof typeof 1);',
     answers: ['string', 'number', '1', 'true'],
     correctAnswerID: 0
   },
   {
     id: 87,
     category: 2,
-    question: 'What will be the output of the following code?\nconsole.log(1 +  "2" + "2");',
+    question: 'What will be the output of the following code? console.log(1 +  "2" + "2");',
     answers: ['122', '32', 'NaN2', 'NaN'],
     correctAnswerID: 0
   },
@@ -641,7 +641,7 @@ const questions = [
   {
     id: 89,
     category: 2,
-    question: 'What will be the output of the following code?\nconsole.log(3 > 2 > 1);',
+    question: 'What will be the output of the following code? console.log(3 > 2 > 1);',
     answers: ['true', 'false'],
     correctAnswerID: 1
   },

@@ -235,7 +235,17 @@ const populateLeaderBoard = () => {
   // loop and add to table
   for (let user of users){
     if (user.totalPoints > 0){
-      let row = `<tr><td>${user.username}</td><td>${user.totalPoints}</td></tr>`;
+
+      let stars = ''
+      if (user.currentRank > 0){
+        for (let i = 0; i < user.currentRank; i++){
+          stars += '<i class="fa-solid fa-star"></i>'
+        }
+      } else {
+        stars = '<i class="fa-solid fa-star-half"></i>'
+      }
+
+      let row = `<tr><td>${user.username}</td><td>${stars}</td><td>${user.totalPoints}</td></tr>`;
       tableBodyContent += row;
     }
   }

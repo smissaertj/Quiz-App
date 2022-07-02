@@ -456,4 +456,200 @@ const questions = [
     answers: ['function = myFunction()','function:myFunction()','function myFunction()'],
     correctAnswerID: 2
   },
+  {
+    id: 63,
+    category: 2,
+    question: 'Inside which HTML element do we put the JavaScript?',
+    answers: ['<js>','<javascript>','<script>','<scripting>'],
+    correctAnswerID: 2
+  },
+  {
+    id: 64,
+    category: 2,
+    question: 'Where is the correct place to insert a JavaScript?',
+    answers: ['<body>','<head>','<heading>', 'Both <body> and <head> are correct.'],
+    correctAnswerID: 3
+  },
+  {
+    id: 65,
+    category: 2,
+    question: 'The external JavaScript file must contain the <script> tag.',
+    answers: ['True', 'False'],
+    correctAnswerID: 1
+  },
+  {
+    id: 66,
+    category: 2,
+    question: 'How do you write "Hello World" in an alert box?',
+    answers: ['msgBox("Hello World");', 'alertBox("Hello World");', 'msg("Hello World");', 'alert("Hello World");'],
+    correctAnswerID: 3
+  },
+  {
+    id: 67,
+    category: 2,
+    question: 'How do you call a function named "myFunction"?',
+    answers: ['myFunction()','call myFunction()','call function myFunction()'],
+    correctAnswerID: 0
+  },
+  {
+    id: 68,
+    category: 2,
+    question: 'How do you write an IF statement in JavaScript?',
+    answers: ['if i = 5', 'if i == 5 then', 'if (i === 5)', 'if (i = 5) then'],
+    correctAnswerID: 2
+  },
+  {
+    id: 69,
+    category: 2,
+    question: 'How to write an IF statement for executing some code if "i" is NOT equal to 5?',
+    answers: ['if (i <> 5)', 'if i =! 5 then', 'if i <> 5', 'if (i != 5)'],
+    correctAnswerID: 3
+  },
+  {
+    id: 70,
+    category: 2,
+    question: 'How does a WHILE loop start?',
+    answers: ['while i = 1 to 10', 'while (i <= 10)','while (i <= 10; i++)'],
+    correctAnswerID: 1
+  },
+  {
+    id: 71,
+    category: 2,
+    question: 'How does a FOR loop start?',
+    answers: ['for (i = 0; i <= 5)', 'for i = 1 to 5', 'for (i = 0; i <= 5; i++)'],
+    correctAnswerID: 2
+  },
+  {
+    id: 72,
+    category: 2,
+    question: 'How can you add a comment in a JavaScript?',
+    answers: ['// This is a comment', '<!-- This is a comment -->', '# This is a comment'],
+    correctAnswerID: 0
+  },
+  {
+    id: 73,
+    category: 2,
+    question: 'What is the correct way to write a JavaScript array?',
+    answers: ['var colors = ["red", "green", "blue"]', 'var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")', 'var colors = "red", "green", "blue"', 'var colors = (1:"red", 2:"green", 3:"blue")'],
+    correctAnswerID: 0
+  },
+  {
+    id: 74,
+    category: 2,
+    question: 'How do you round the number 7.25, to the nearest integer?',
+    answers: ['rnd(7.25)', 'round(7.25)', 'Math.rnd(7.25)', 'Math.round(7.25)'],
+    correctAnswerID: 3
+  },
+  {
+    id: 75,
+    category: 2,
+    question: 'How do you find the number with the highest value of x and y?',
+    answers: ['top(x, y)', 'ceil(x, y)', 'Math.max(x, y)', 'Math.ceil(x, y)'],
+    correctAnswerID: 2
+  },
+  {
+    id: 76,
+    category: 2,
+    question: 'What is the correct JavaScript syntax for opening a new window called "w2" ?',
+    answers: ['w2 = window.new("https://www.site.com");','w2 = window.open("https://www.site.com");'],
+    correctAnswerID: 1
+  },
+  {
+    id: 77,
+    category: 2,
+    question: 'JavaScript is the same as Java.',
+    answers: ['True', 'False'],
+    correctAnswerID: 1
+  },
+  {
+    id: 78,
+    category: 2,
+    question: 'Which event occurs when the user clicks on an HTML element?',
+    answers: ['onmouseover', 'onchange', 'onmouseclick', 'onclick'],
+    correctAnswerID: 3
+  },
+  {
+    id: 79,
+    category: 2,
+    question: 'How do you declare a JavaScript variable?',
+    answers: ['let varName;', 'variable varName;', 'v varName;'],
+    correctAnswerID: 0
+  },
+  {
+    id: 80,
+    category: 2,
+    question: 'Which operator is used to assign a value to a variable?',
+    answers: ['*', '-', 'x', '='],
+    correctAnswerID: 3
+  },
+  {
+    id: 81,
+    category: 2,
+    question: 'What will the following code return: Boolean(10 > 9)',
+    answers: ['false', 'NaN', 'true'],
+    correctAnswerID: 2
+  },
+  {
+    id: 82,
+    category: 2,
+    question: 'Is JavaScript case-sensitive?',
+    answers: ['Yes', 'No'],
+    correctAnswerID: 0
+  },
+  {
+    id: 83,
+    category: 2,
+    question: 'What will be the output of the code below?\nconsole.log(typeof NaN);',
+    answers: ['NaN', 'number', 'null', 'undefined'],
+    correctAnswerID: 1
+  },
+  {
+    id: 84,
+    category: 2,
+    question: 'What will be the output of the code below?\nlet array = [1, 2, 3];\narray[6] = 9;\nconsole.log(array[5]);',
+    answers: ['1', '2', '9', 'undefined'],
+    correctAnswerID: 3
+  },
+  {
+    id: 85,
+    category: 2,
+    question: 'What will be the output of the code below?\nconsole.log(018 - 015);',
+    answers: ['NaN', '3', '5', '13'],
+    correctAnswerID: 2 // 018 is decimal, 015 is octal: 18 - 13 = 5
+  },
+  {
+    id: 86,
+    category: 2,
+    question: 'What will be the output of the code below?\nconsole.log(typeof typeof 1);',
+    answers: ['string', 'number', '1', 'true'],
+    correctAnswerID: 0
+  },
+  {
+    id: 87,
+    category: 2,
+    question: 'What will be the output of the code below?\nconsole.log(1 +  "2" + "2");',
+    answers: ['122', '32', 'NaN2', 'NaN'],
+    correctAnswerID: 0
+  },
+  {
+    id: 88,
+    category: 2,
+    question: 'Is JavaScript an object oriented language?',
+    answers: ['Yes', 'No'],
+    correctAnswerID: 0
+  },
+  {
+    id: 89,
+    category: 2,
+    question: 'What will be the output of the code below?\nconsole.log(3 > 2 > 1);',
+    answers: ['true', 'false'],
+    correctAnswerID: 1
+  },
+  {
+    id: 90,
+    category: 2,
+    question: 'Which of the below is used in Java script to insert special characters?',
+    answers: ['&','\\','-', '%'],
+    correctAnswerID: 1
+  },
 ]

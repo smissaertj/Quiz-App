@@ -323,6 +323,8 @@ let quiz = {
     this.linkLeaderBoard = document.getElementById('linkLeaderBoard');
     this.linkLeaderBoard.classList.add('disabled');
 
+    this.timerDiv = document.getElementById('timerDiv');
+    this.timerDiv.style.display = ''; // make sure the timer is visible in case it was hidden after a time up event.
     this.timer = document.getElementById('progressbarTimer');
     this.timer.setAttribute('aria-valuenow', '100');
 
@@ -394,6 +396,7 @@ let quiz = {
       let timeUpToastEl = document.getElementById('timeUpToast');
       let timeUpToast = new bootstrap.Toast(timeUpToastEl, { autohide: false });
       timeUpToast.show();
+      this.timerDiv.style.display = 'none';
 
       let btnClosetimeUpToast = document.getElementById('btnClosetimeUpToast');
       btnClosetimeUpToast.addEventListener('click', () =>{

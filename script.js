@@ -360,7 +360,8 @@ let quiz = {
 
     // prevent the user from clicking Next until an answer was clicked.
     this.btnNext = document.getElementById('btnNext');
-    this.btnNext.classList.add('disabled');
+    this.btnNext.classList.remove('btn-success');
+    this.btnNext.classList.add('disabled', 'btn-outline-secondary');
 
     // listen for an answer
     let btnAnswers = document.querySelectorAll('.btn-answer');
@@ -371,8 +372,6 @@ let quiz = {
         this.btnNext.classList.remove('disabled');
       })
     })
-
-
   },
 
   checkAnswer: function(answerIndex){
@@ -388,8 +387,11 @@ let quiz = {
 
       let btnClosetimeUpToast = document.getElementById('btnClosetimeUpToast');
       btnClosetimeUpToast.addEventListener('click', () =>{
-        this.btnNext.classList.remove('disabled');
+        this.btnNext.classList.remove('disabled', 'btn-outline-secondary');
+        this.btnNext.classList.add ('btn-success');
       })
+
+      // TODO Toast Alignment/placement!
 
     } else if (answerIndex === currentQuestion.correctAnswerID){
       btn.classList.add('btn-success', 'animate__animated', 'animate__shakeY');

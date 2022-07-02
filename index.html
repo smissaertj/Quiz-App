@@ -129,9 +129,20 @@
       <div class="col col-lg-8 my-3" id="quizCard">
         <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
           <p class="pb-1 display-8 fw-bold" id="questionTitle"></p>
+          <!-- Time Up Toast -->
+          <div class="toast align-items-center text-white text-center bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="timeUpToast">
+            <div class="d-flex">
+              <div class="toast-body">
+                Time's up! You're still here, right?
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" id="btnClosetimeUpToast"></button>
+            </div>
+          </div>
+          <!-- Timer -->
           <div class="progress my-3" id="timerDiv">
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" id="progressbarTimer" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
+          <!-- Answers -->
           <div class="d-grid gap-2" id="quizAnswers"></div>
           <button class="btn btn-outline-secondary my-3 mx-auto" id="btnNext" onclick="quiz.nextQuestion()">Next</button>
         </div>
@@ -212,7 +223,7 @@
         </div>
         </div>
       </div>
-      
+
 <!-- Footer -->
     <div class="container">
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

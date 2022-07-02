@@ -338,7 +338,8 @@ let quiz = {
       if (timerPosition <= 0) {
         clearInterval(this.interval);
         this.score--; // penalty for not answering within the time limit
-        this.nextQuestion();
+        // this.nextQuestion();
+        this.checkAnswer();
       }
     }, 1)
 
@@ -378,7 +379,19 @@ let quiz = {
     let currentQuestion = questions[this.questionList[this.currentQuestion]]
     let btns = document.querySelectorAll('.btn-answer');
     let btn = btns[answerIndex];
-    if (answerIndex === currentQuestion.correctAnswerID){
+    if (answerIndex === undefined){
+      // The user did not click an answer within the time limit. We show a popup and only allow the user to move to
+      // the next question if the popup is closed.
+      let timeUpToastEl = document.getElementById('timeUpToast');
+      let timeUpToast = new bootstrap.Toast(timeUpToastEl, { autohide: false });
+      timeUpToast.show();
+
+      let btnClosetimeUpToast = document.getElementById('btnClosetimeUpToast');
+      btnClosetimeUpToast.addEventListener('click', () =>{
+        this.btnNext.classList.remove('disabled');
+      })
+
+    } else if (answerIndex === currentQuestion.correctAnswerID){
       btn.classList.add('btn-success', 'animate__animated', 'animate__shakeY');
       this.score++ // increment the score
     } else {
